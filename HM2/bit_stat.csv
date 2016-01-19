@@ -1,0 +1,5 @@
+[('#1 datetime_start', 'Jan 19 2016 01:20:24'), ('#2 datetime_end', 'Jan 19 2016 01:29:19'), ('#3 transactions_total', 18), ('#4 avg_amount', 0.18999), ('#5 rate', '1.8 transactions per minute'), ('#6 avg_price', 385.0)]
+[('#1 datetime_start', 'Jan 19 2016 01:31:05'), ('#2 datetime_end', 'Jan 19 2016 01:38:12'), ('#3 transactions_total', 11), ('#4 avg_amount', 0.96561), ('#5 rate', '1.1 transactions per minute'), ('#6 avg_price', 385.18)]
+[('#1 datetime_start', 'Jan 19 2016 01:39:53'), ('#2 datetime_end', 'Jan 19 2016 01:49:43'), ('#3 transactions_total', 29), ('#4 avg_amount', 0.9297), ('#5 rate', '2.9 transactions per minute'), ('#6 avg_price', 384.64)]
+[('#1 datetime_start', 'Jan 19 2016 01:50:53'), ('#2 datetime_end', 'Jan 19 2016 01:59:09'), ('#3 transactions_total', 21), ('#4 avg_amount', 0.44092), ('#5 rate', '2.1 transactions per minute'), ('#6 avg_price', 385.39)]
+[('#1 datetime_start', 'Jan 19 2016 02:01:37'), ('#2 datetime_end', 'Jan 19 2016 02:08:41'), ('#3 transactions_total', 5), ('#4 avg_amount', 0.22357), ('#5 rate', '0.5 transactions per minute'), ('#6 avg_price', 385.47)]
