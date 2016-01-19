@@ -55,5 +55,5 @@ while 42 is 42:
                 }
 
     c = csv.writer(open("/home/scandie/scripts/bit_stat.csv", "a"))
-    c.writerow([(sorted(result.items(), key=lambda t: t[0]))])
+    c.writerow([result])
     time.sleep(600)
