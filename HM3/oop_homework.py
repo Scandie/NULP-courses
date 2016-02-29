@@ -90,6 +90,10 @@ Task #3:
 """
 
 
+class CustomValidationError(Exception):
+    pass
+
+
 class RegexValidator(object):
 
     def __init__(self, regex, message):
@@ -99,13 +103,13 @@ class RegexValidator(object):
     def __call__(self, some_text):
         self.some_text = some_text
         if not re.match(self.regex, self.some_text):
-            print self.message
+            raise CustomValidationError(self.message)
         else:
-            print str(self.some_text) + " is valid value"
+            print (str(self.some_text) + " is valid value")
 
 validator = RegexValidator(regex='^[A-Z]$', message='Ouch! your input is not valid!')
-validator('f*ck')
 validator('K')
+#validator('f*ck')
 
 
 class EmailValidator(RegexValidator):
@@ -113,10 +117,12 @@ class EmailValidator(RegexValidator):
         def __init__(self):
             RegexValidator.__init__(self, regex='[\w.]+[@][\w.][a-z]', message='Something wrong with your address!')
 
+
 mail_validator = EmailValidator()
 mail_validator('grizly.vl@gmail.com')
 mail_validator('johnycage@mortalkomb.at.net')
 mail_validator('howtoemail.net')
+
 
 
 
