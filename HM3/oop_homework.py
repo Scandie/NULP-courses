@@ -11,7 +11,7 @@ class Lonely(object):
     def __new__(cls, name, age):
         if cls.my_instance is None:
             cls.my_instance = object.__new__(cls)
-            return cls.my_instance
+        return cls.my_instance
 
     def __init__(self, name, age):
         self.name = name
