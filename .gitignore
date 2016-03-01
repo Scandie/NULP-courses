@@ -7,6 +7,9 @@
 
 # User-specific stuff:
 .idea/workspace.xml
+.idea/ProtossOP.iml
+.idea/encodings.xml
+.idea/modules.xml
 .idea/tasks.xml
 .idea/dictionaries
 .idea/vcs.xml
