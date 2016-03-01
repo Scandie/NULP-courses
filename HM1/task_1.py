@@ -1,8 +1,8 @@
-def non_uniq(X):
-    new_X = []
+def non_unique(my_list):
+    new_list = []
     i = 0
     while i != len(X):
-        if X.count(X[i]) > 1:
-            new_X.append(X[i])
+        if my_list.count(my_list[i]) > 1:
+            new_list.append(my_list[i])
         i += 1
-    return new_X
+    return my_list
