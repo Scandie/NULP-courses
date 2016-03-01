@@ -112,8 +112,3 @@ mail_validator = EmailValidator()
 mail_validator('grizly.vl@gmail.com')
 mail_validator('johnycage@mortalkomb.at.net')
 mail_validator('howtoemail.net')
-
-
-
-
-
