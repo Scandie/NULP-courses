@@ -27,6 +27,37 @@ b = Lonely('Bob', 48)
 print b
 
 
+""" Task #2 : Create class Observable.
+a)which can take **kwargs as arguments and assign all values from it to new Instance.
+Example:
+    obs = Observable(name='Jack', work='dev', jobs=('developer', '2 year'), titles={'senior dev': 'Google'})
+    print obs.name
+    >> Jack
+b) Modify class that when you print Object of this class  in python interpreter it will show
+you all params with which object was created(order is not required)
+Example:
+    print obs
+    Observable(titles:{'senior dev': 'Google'},work:dev,jobs:('developer', '2 year'),name:Jack)
+ """
+
+print """
+Task #2:
+"""
+
+
+class Observable(object):
+
+    def __str__(self):
+        return 'Observable(' + str(self.__dict__)[1:-1] + ')'
+
+    def __init__(self, **kwargs):
+        for key, value in kwargs.items():
+            self.__setattr__(key, value)
+
+
+obs = Observable(name='Jack', work='dev', jobs=('developer', '2 year'), titles={'senior dev': 'Google'})
+print obs.name
+print obs
 
 
 
