@@ -99,7 +99,7 @@ class RegexValidator(object):
 
 validator = RegexValidator(regex='^[A-Z]$', message='Ouch! your input is not valid!')
 validator('K')
-#validator('f*ck')
+# validator('f*ck')
 
 
 class EmailValidator(RegexValidator):
@@ -112,6 +112,7 @@ mail_validator = EmailValidator()
 mail_validator('grizly.vl@gmail.com')
 mail_validator('johnycage@mortalkomb.at.net')
 mail_validator('howtoemail.net')
+
 
 
 
