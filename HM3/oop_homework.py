@@ -48,22 +48,12 @@ Task #2:
 class Observable(object):
 
     def __str__(self):
-        result = 'Observable('
-        for i in range(len(self.keys)):
-            message = '{}:{}'.format(self.keys[i], self.values[i])
-            if i != len(self.keys)-1:
-                result += message + ','
-            else:
-                result += message
-        return result + ')'
+        return 'Observable(' + str(self.__dict__)[1:-1] + ')'
 
     def __init__(self, **kwargs):
-        self.keys = []
-        self.values = []
         for key, value in kwargs.items():
             self.__setattr__(key, value)
-            self.keys.append(key)
-            self.values.append(self.__getattribute__(key))
+
 
 obs = Observable(name='Jack', work='dev', jobs=('developer', '2 year'), titles={'senior dev': 'Google'})
 print obs.name
