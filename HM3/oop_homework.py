@@ -47,12 +47,12 @@ Task #2:
 
 class Observable(object):
 
-    def __str__(self):
+    def __repr__(self):
         return 'Observable(' + str(self.__dict__)[1:-1] + ')'
 
     def __init__(self, **kwargs):
         for key, value in kwargs.items():
-            self.__setattr__(key, value)
+            self.__dict__[key] = value
 
 
 obs = Observable(name='Jack', work='dev', jobs=('developer', '2 year'), titles={'senior dev': 'Google'})
