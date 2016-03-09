@@ -60,24 +60,27 @@ def memo(func):   # not sure about proper work of this wrapper
     def memo_wrapper(*args, **kwargs):
         if kwargs and not args:
 
-            n = (sorted(kwargs.items())[0][1])  # to simplify
+            for key, value in (sorted(kwargs.items())):
+                n = value                                   # to simplify
 
-            if n not in func_memo:               # actual wrapping work part
-                func_memo[n] = func(**kwargs)
-                return func(**kwargs)
+                if n not in func_memo:               # actual wrapping work part
+                    func_memo[n] = func(**kwargs)
+                    return func(**kwargs)
 
-            # print func_memo
-            return func_memo[n]
+                # print func_memo
+                return func_memo[n]
 
         elif args and not kwargs:
-            n = args[0]                         # to simplify
 
-            if n not in func_memo:              # actual wrapping work part
-                func_memo[n] = func(*args)
-                return func(*args)
+            for arg in args:
+                n = arg                         # to simplify
 
-            # print func_memo
-            return func_memo[n]
+                if n not in func_memo:              # actual wrapping work part
+                    func_memo[n] = func(*args)
+                    return func(*args)
+
+                # print func_memo
+                return func_memo[n]
 
     return memo_wrapper
 
