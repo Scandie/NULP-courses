@@ -61,26 +61,34 @@ def memo(func):   # not sure about proper work of this wrapper
         if kwargs and not args:
 
             for key, value in (sorted(kwargs.items())):
-                n = value                                   # to simplify
+                if value.__hash__:
+                    print str(kwargs[key]) + ' is hashable'
+                    n = value                                  # to simplify
 
-                if n not in func_memo:               # actual wrapping work part
-                    func_memo[n] = func(**kwargs)
+                    if n not in func_memo:               # actual wrapping work part
+                        func_memo[n] = func(**kwargs)
+
+                    # print func_memo
+                    return func_memo[n]
+                else:
+                    print str(kwargs[key]) + " isn't hashable"
                     return func(**kwargs)
-
-                # print func_memo
-                return func_memo[n]
 
         elif args and not kwargs:
 
             for arg in args:
-                n = arg                         # to simplify
+                if arg.__hash__:
+                    print str(arg) + ' is hashable'
+                    n = arg                         # to simplify
 
-                if n not in func_memo:              # actual wrapping work part
-                    func_memo[n] = func(*args)
+                    if n not in func_memo:              # actual wrapping work part
+                        func_memo[n] = func(*args)
+
+                    # print func_memo
+                    return func_memo[n]
+                else:
+                    print str(arg) + " isn't hashable"
                     return func(*args)
-
-                # print func_memo
-                return func_memo[n]
 
     return memo_wrapper
 
@@ -106,9 +114,9 @@ def fib(n):
     return int(fib(n=n-1) + fib(n-2))    # 'n=n' for kwargs filling and 'n' for args ones
 
 
-print fib(n=12)
+print fib(n=6)
 print func_memo
-print fib(12)
+print fib(4)
 print func_memo, '\n'*3
 
 #
@@ -124,7 +132,7 @@ def factorial(k):
     return k * factorial(k-1)     # change 'k' to 'k=k' for kwargs-type filling func_memo
 
 
-print factorial(k=15)
+print factorial(k=8)
 print func_memo
-print factorial(15)
+print factorial(6)
 print func_memo
