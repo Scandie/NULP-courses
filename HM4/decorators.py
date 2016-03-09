@@ -10,6 +10,7 @@ both positional and named arguments (your wrapper function should take both *arg
 you called func(4, 4, 4)
 it returned 6 6
 """
+print """     === Task 1 ===      \n"""  # to separate results in console
 
 
 def log(func):
@@ -29,7 +30,7 @@ def multiply(x, y):
     return x*y
 
 print multiply(2, 3)
-print multiply(y=5, x=2)
+print multiply(y=5, x=2), '\n'*3
 
 # === Task 2 ===
 """
@@ -49,7 +50,7 @@ One way is tuple(sorted(kwargs.items())).
 
 Such functions could be used to reduce cost of computation of some functions.
 """
-
+print """     === Task 2 ===      \n"""  # to separate results in console
 func_memo = {}
 
 
@@ -57,7 +58,7 @@ def memo(func):   # not sure about proper work of this wrapper
 
     @wraps(func)
     def memo_wrapper(*args, **kwargs):
-        t = time.time()
+        t = time.time()                    # define timer start
         if kwargs and not args:
 
             n = (sorted(kwargs.items())[0][1])  # to simplify
@@ -67,7 +68,7 @@ def memo(func):   # not sure about proper work of this wrapper
 
             if n not in func_memo:               # actual wrapping work part
                 func_memo[n] = func(**kwargs)
-                print 'time without wasted %f' % (time.time() - t)    # use to show a point of using memoize
+                print 'time without wasted %f' % (time.time() - t)    # using timer to show the point of using memoize
                 return func(**kwargs)
 
             # print func_memo
@@ -103,4 +104,22 @@ def fib(n):
 print fib(n=12)
 print func_memo
 print fib(12)
+print func_memo, '\n'*3
+
+#
+# Next peace of code for testing memo decorator with another function
+#
+func_memo = {}
+
+
+@memo
+def factorial(k):
+    if k < 2:
+        return 1
+    return k * factorial(k-1)     # change 'k' to 'k=k' for kwargs-type filling func_memo
+
+
+print factorial(k=15)
+print func_memo
+print factorial(15)
 print func_memo
