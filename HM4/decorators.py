@@ -58,7 +58,6 @@ def memo(func):   # not sure about proper work of this wrapper
 
     @wraps(func)
     def memo_wrapper(*args, **kwargs):
-        t = time.time()                    # define timer start
         if kwargs and not args:
 
             n = (sorted(kwargs.items())[0][1])  # to simplify
@@ -68,11 +67,9 @@ def memo(func):   # not sure about proper work of this wrapper
 
             if n not in func_memo:               # actual wrapping work part
                 func_memo[n] = func(**kwargs)
-                print 'time without wasted %f' % (time.time() - t)    # using timer to show the point of using memoize
                 return func(**kwargs)
 
             # print func_memo
-            print 'time with wasted %f' % (time.time() - t)
             return func_memo[n]
 
         elif args and not kwargs:
@@ -82,16 +79,26 @@ def memo(func):   # not sure about proper work of this wrapper
 
             if n not in func_memo:              # actual wrapping work part
                 func_memo[n] = func(*args)
-                print 'time wasted %f' % (time.time() - t)
                 return func(*args)
 
             # print func_memo
-            print 'time wasted %f' % (time.time() - t)
             return func_memo[n]
 
     return memo_wrapper
 
 
+def timer(func):
+
+    def time_wrapper(*args, **kwargs):
+        t = time.time()                    # define timer start
+        result = func(*args, **kwargs)
+        print 'time wasted %f' % (time.time() - t)    # using timer to show the point of using memoize
+        return result
+
+    return time_wrapper
+
+
+@timer
 @memo
 def fib(n):
 
