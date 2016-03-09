@@ -62,9 +62,6 @@ def memo(func):   # not sure about proper work of this wrapper
 
             n = (sorted(kwargs.items())[0][1])  # to simplify
 
-            if n <= 1 or n == 2:
-                return 1
-
             if n not in func_memo:               # actual wrapping work part
                 func_memo[n] = func(**kwargs)
                 return func(**kwargs)
@@ -74,8 +71,6 @@ def memo(func):   # not sure about proper work of this wrapper
 
         elif args and not kwargs:
             n = args[0]                         # to simplify
-            if n <= 1 or n == 2:
-                return 1
 
             if n not in func_memo:              # actual wrapping work part
                 func_memo[n] = func(*args)
