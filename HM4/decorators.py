@@ -52,50 +52,61 @@ One way is tuple(sorted(kwargs.items())).
 Such functions could be used to reduce cost of computation of some functions.
 """
 print """     === Task 2 ===      \n"""  # to separate results in console
-func_memo = {}
 
 
 def memo(func):   # not sure about proper work of this wrapper
 
-    @wraps(func)
+    func_memo = {}
+
+    # @wraps(func)
     def memo_wrapper(*args, **kwargs):
+
+        def args_hashable(arguments):
+
+            ishash = True
+            for arg in arguments:
+                if not isinstance(arg, Hashable):
+                    ishash = False
+                    break
+            if ishash:
+                # print str(arguments) + ' are hashable'
+                return True
+            else:
+                return False
+
         if kwargs and not args:
+            my_args = tuple([value for key, value in (sorted(kwargs.items()))])  # to simplify
+            if args_hashable(my_args):
 
-            for key, value in (sorted(kwargs.items())):
-                if isinstance(value, Hashable):
-                    print str(kwargs[key]) + ' is hashable'
-                    n = value                                  # to simplify
-
-                    if n not in func_memo:               # actual wrapping work part
-                        func_memo[n] = func(**kwargs)
-
+                if my_args not in func_memo:               # actual wrapping work part
+                    func_memo[my_args] = func(**kwargs)
                     # print func_memo
-                    return func_memo[n]
-                else:
-                    print str(kwargs[key]) + " isn't hashable"
-                    return func(**kwargs)
+                return func_memo[my_args]
+
+            else:
+                # print str(my_args) + " aren't hashable"
+                return func(**kwargs)
 
         elif args and not kwargs:
+            my_args = args
 
-            for arg in args:
-                if isinstance(arg, Hashable):
-                    print str(arg) + ' is hashable'
-                    n = arg                         # to simplify
+            if args_hashable(my_args):
 
-                    if n not in func_memo:              # actual wrapping work part
-                        func_memo[n] = func(*args)
-
+                if my_args not in func_memo:               # actual wrapping work part
+                    func_memo[my_args] = func(*args)
                     # print func_memo
-                    return func_memo[n]
-                else:
-                    print str(arg) + " isn't hashable"
-                    return func(*args)
+                return func_memo[my_args]
+
+            else:
+                # print str(my_args) + " aren't hashable"
+                return func(*args)
 
     return memo_wrapper
 
 
 def timer(func):
 
+    @wraps(func)
     def time_wrapper(*args, **kwargs):
         t = time.time()                    # define timer start
         result = func(*args, **kwargs)
@@ -116,16 +127,15 @@ def fib(n):
 
 
 print fib(n=6)
-print func_memo
 print fib(4)
-print func_memo, '\n'*3
+print '\n'*3
 
 #
 # Next peace of code for testing memo decorator with another function
 #
-func_memo = {}
 
 
+@timer
 @memo
 def factorial(k):
     if k < 2:
@@ -134,6 +144,4 @@ def factorial(k):
 
 
 print factorial(k=8)
-print func_memo
 print factorial(6)
-print func_memo
