@@ -1,5 +1,6 @@
 from functools import wraps
 import time
+from collections import Hashable
 
 # === Task 1 ===
 """
@@ -61,7 +62,7 @@ def memo(func):   # not sure about proper work of this wrapper
         if kwargs and not args:
 
             for key, value in (sorted(kwargs.items())):
-                if value.__hash__:
+                if isinstance(value, Hashable):
                     print str(kwargs[key]) + ' is hashable'
                     n = value                                  # to simplify
 
@@ -77,7 +78,7 @@ def memo(func):   # not sure about proper work of this wrapper
         elif args and not kwargs:
 
             for arg in args:
-                if arg.__hash__:
+                if isinstance(arg, Hashable):
                     print str(arg) + ' is hashable'
                     n = arg                         # to simplify
 
