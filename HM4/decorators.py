@@ -62,17 +62,15 @@ def memo(func):   # not sure about proper work of this wrapper
     def memo_wrapper(*args, **kwargs):
 
         def args_hashable(arguments):
-
+            """
+            check a set of arg for hashability
+            """
             ishash = True
             for arg in arguments:
                 if not isinstance(arg, Hashable):
                     ishash = False
                     break
-            if ishash:
-                # print str(arguments) + ' are hashable'
-                return True
-            else:
-                return False
+            return ishash
 
         if kwargs and not args:
             my_args = tuple([value for key, value in (sorted(kwargs.items()))])  # to simplify
@@ -83,8 +81,7 @@ def memo(func):   # not sure about proper work of this wrapper
                     # print func_memo
                 return func_memo[my_args]
 
-            else:
-                # print str(my_args) + " aren't hashable"
+            else:                                           # if not hashable
                 return func(**kwargs)
 
         elif args and not kwargs:
@@ -97,15 +94,16 @@ def memo(func):   # not sure about proper work of this wrapper
                     # print func_memo
                 return func_memo[my_args]
 
-            else:
-                # print str(my_args) + " aren't hashable"
+            else:                                          # if not hashable
                 return func(*args)
 
     return memo_wrapper
 
 
 def timer(func):
-
+    """
+    calculating time of function computing
+    """
     @wraps(func)
     def time_wrapper(*args, **kwargs):
         t = time.time()                    # define timer start
