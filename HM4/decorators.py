@@ -58,7 +58,7 @@ def memo(func):   # not sure about proper work of this wrapper
 
     func_memo = {}
 
-    # @wraps(func)
+    @wraps(func)
     def memo_wrapper(*args, **kwargs):
 
         def args_hashable(arguments):

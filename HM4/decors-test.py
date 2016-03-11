@@ -9,6 +9,7 @@ class DecoratorsTestCase(TestCase):
 
         func = Mock(name='func')
         func.return_value = 42
+        func.__name__ = 'my_func'
 
         wrapped = memo(func)
         # First call gives a call count of 1
