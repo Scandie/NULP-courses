@@ -24,7 +24,7 @@ class Lonely(object):
 a = Lonely('Ann', 19)
 print a
 b = Lonely('Bob', 48)
-print b
+print a
 
 
 """ Task #2 : Create class Observable.
@@ -48,7 +48,7 @@ Task #2:
 class Observable(object):
 
     def __repr__(self):
-        return 'Observable(' + str(self.__dict__)[1:-1] + ')'
+        return '{}({})'.format(self.__class__.__name__, str(self.__dict__)[1:-1])
 
     def __init__(self, **kwargs):
         for key, value in kwargs.items():

@@ -74,6 +74,7 @@ def memo(func):   # not sure about proper work of this wrapper
 
         if kwargs and not args:
             my_args = tuple([value for key, value in (sorted(kwargs.items()))])  # to simplify
+
             if args_hashable(my_args):
 
                 if my_args not in func_memo:               # actual wrapping work part
