@@ -60,6 +60,7 @@ print obs.name
 print obs
 
 
+
 """ Task #3 :
 a) Create class RegexValidator with attributes regex and message. Regex attribute will be used for further
 validation, and message - for custom Error messages in case of ValidationError occur.
